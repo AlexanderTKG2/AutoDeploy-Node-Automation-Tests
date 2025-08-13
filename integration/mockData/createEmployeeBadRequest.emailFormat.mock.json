@@ -1,0 +1,10 @@
+{
+	"firstName": "John",
+	"lastName": "Doe",
+	"position": "Worker",
+	"salary": 10000,
+	"workEmail": "invalid email format",
+	"personalEmail": "invalid email fortmat",
+	"personalPhone": "9999000000",
+	"country": "Mexico"
+}

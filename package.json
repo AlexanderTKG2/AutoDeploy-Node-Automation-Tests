@@ -1,0 +1,42 @@
+{
+  "name": "autodeploy-node-automation-tests",
+  "version": "1.0.0",
+  "description": "automation test suite for autodeploy node nest project",
+  "main": "index.test.js",
+  "scripts": {
+    "start": "npm run test",
+    "test": "jest index.test.js",
+    "test:integration": "jest index.test.js",
+    "test:integration:dev": "jest index.test.js --stage=dev",
+    "test:integration:qa": "jest index.test.js --stage=qa",
+    "test:integration:uat": "jest index.test.js --stage=uat",
+    "test:integration:staging": "jest index.test.js --stage=staging",
+    "test:integration:prod": "jest index.test.js --stage=prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexanderTKG2/AutoDeploy-Node-Automation-Tests.git"
+  },
+  "keywords": [
+    "Node",
+    "Axios",
+    "Jest",
+    "Test"
+  ],
+  "author": "Ksquare",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/AlexanderTKG2/AutoDeploy-Node-Automation-Tests/issues"
+  },
+  "homepage": "https://github.com/AlexanderTKG2/AutoDeploy-Node-Automation-Tests#readme",
+  "devDependencies": {
+    "jest": "^30.0.5",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "dotenv": "^17.2.1",
+    "winston": "^3.17.0"
+  }
+}
