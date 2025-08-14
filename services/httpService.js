@@ -1,4 +1,3 @@
-// const axios = require("axios").default;
 const axios = require("axios");
 
 const DEFAULT_REQUEST_HEADERS = {
@@ -40,10 +39,10 @@ module.exports = class HttpService {
     const requestUrl = `${this.#baseUrl}${relativeAddress}`;
     const requestHeaders = headers || this.#defaultHeaders;
     return await axios.patch(requestUrl, body, {
-        headers: {
-            ...requestHeaders
-        },
-    })
+      headers: {
+        ...requestHeaders,
+      },
+    });
   }
 
   async sendDeleteRequest(relativeAddress, headers = null) {
@@ -55,4 +54,4 @@ module.exports = class HttpService {
       },
     });
   }
-}
+};

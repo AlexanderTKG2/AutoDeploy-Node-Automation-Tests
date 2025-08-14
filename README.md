@@ -35,12 +35,17 @@ npm run test:integration:prod
 ### Using --stage Parameter
 
 ```bash
-npm run test:integration -- --stage=dev
-npm run test:integration -- --stage=qa
-npm run test:integration -- --stage=uat
+npm run test:integration -- --stage=[STAGE_VALUE]
+```
+
+### Running tests with npx
+
+```bash
+npx jest index.test.js --stage=[STAGE_VALUE]
 ```
 
 ## Notes  
 
 - Requires the API to be deployed and accessible or running in localhost.  
 - Set any required environment variables before running.
+- If no stage parameter is provided and no BASE_URL environment variable si set up, then the requests will be sent to **<http://localhost:8080>** by default.

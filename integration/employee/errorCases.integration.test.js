@@ -10,8 +10,7 @@ const employeeErrorCasesIntegrationTestSuite = (httpService) => {
     it("should fail when attempting to create an employee without sending a request body", async () => {
       try {
         await httpService.sendPostRequest("/employee", null);
-        // fail test if API call does not throw error
-        expect(true).toEqual(false);
+        expect(true).toEqual(false); // fail test if API call does not throw error
       } catch (error) {
         expect(error.response).toBeDefined();
         expect(error.response).toBeTruthy();
@@ -23,7 +22,7 @@ const employeeErrorCasesIntegrationTestSuite = (httpService) => {
       try {
         await httpService.sendPostRequest(
           "/employee",
-          createEmployeeMissingParamsData
+          createEmployeeMissingParamsData,
         );
         expect(true).toEqual(false);
       } catch (error) {
@@ -37,7 +36,7 @@ const employeeErrorCasesIntegrationTestSuite = (httpService) => {
       try {
         await httpService.sendPostRequest(
           "/employee",
-          createEmployeeInvalidEmail
+          createEmployeeInvalidEmail,
         );
         expect(true).toEqual(false);
       } catch (error) {
@@ -51,7 +50,7 @@ const employeeErrorCasesIntegrationTestSuite = (httpService) => {
       try {
         await httpService.sendPatchRequest(
           `/employee/${EMPLOYEE_ID_INVALID_FORMAT}`,
-          {}
+          {},
         );
         expect(true).toEqual(false);
       } catch (error) {
@@ -65,7 +64,7 @@ const employeeErrorCasesIntegrationTestSuite = (httpService) => {
       try {
         await httpService.sendPatchRequest(
           `/employee/1`,
-          updateEmployeeInvalidPhoneEmail
+          updateEmployeeInvalidPhoneEmail,
         );
         expect(true).toEqual(false);
       } catch (error) {
@@ -79,7 +78,7 @@ const employeeErrorCasesIntegrationTestSuite = (httpService) => {
       try {
         await httpService.sendPatchRequest(
           `/employee/${EMPLOYEE_ID_NOT_FOUND}`,
-          updateEmployeeData
+          updateEmployeeData,
         );
         expect(true).toEqual(false);
       } catch (error) {
@@ -92,7 +91,7 @@ const employeeErrorCasesIntegrationTestSuite = (httpService) => {
     it("should fail when attempting to get an employee with an invalid id", async () => {
       try {
         await httpService.sendGetRequest(
-          `/employee/${EMPLOYEE_ID_INVALID_FORMAT}`
+          `/employee/${EMPLOYEE_ID_INVALID_FORMAT}`,
         );
         expect(true).toEqual(false);
       } catch (error) {
@@ -116,7 +115,7 @@ const employeeErrorCasesIntegrationTestSuite = (httpService) => {
     it("should fail when attempting to delete an employee with an invalid id", async () => {
       try {
         await httpService.sendDeleteRequest(
-          `/employee/${EMPLOYEE_ID_INVALID_FORMAT}`
+          `/employee/${EMPLOYEE_ID_INVALID_FORMAT}`,
         );
         expect(true).toEqual(false);
       } catch (error) {
@@ -129,7 +128,7 @@ const employeeErrorCasesIntegrationTestSuite = (httpService) => {
     it("should get a 404 error when attempting to delete an employee with a nonexistent id", async () => {
       try {
         await httpService.sendDeleteRequest(
-          `/employee/${EMPLOYEE_ID_NOT_FOUND}`
+          `/employee/${EMPLOYEE_ID_NOT_FOUND}`,
         );
         expect(true).toEqual(false);
       } catch (error) {

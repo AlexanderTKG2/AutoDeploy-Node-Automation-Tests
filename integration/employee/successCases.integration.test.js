@@ -1,7 +1,5 @@
 const createEmployeeData = require("../mockData/createEmployeeRequestBody.mock.json");
-const updateEmployeeData = require(
-  "../mockData/updateEmployeePartialRequestBody.mock.json"
-);
+const updateEmployeeData = require("../mockData/updateEmployeePartialRequestBody.mock.json");
 const { log } = require("../../lib/logger");
 
 const employeeSuccessCasesIntegrationTestSuite = (httpService) => {
@@ -10,7 +8,7 @@ const employeeSuccessCasesIntegrationTestSuite = (httpService) => {
     it("Should successfully create a new employee", async () => {
       const response = await httpService.sendPostRequest(
         "/employee",
-        createEmployeeData
+        createEmployeeData,
       );
       expect(response).toBeDefined();
       expect(response).toBeTruthy();
@@ -19,7 +17,14 @@ const employeeSuccessCasesIntegrationTestSuite = (httpService) => {
       expect(response.data).toBeDefined();
       expect(response.data).toBeTruthy();
 
-      // test schema
+      expect(response.data).toHaveProperty("firstName");
+      expect(response.data).toHaveProperty("lastName");
+      expect(response.data).toHaveProperty("salary");
+      expect(response.data).toHaveProperty("isActive");
+      expect(response.data).toHaveProperty("createdAt");
+      expect(response.data).toHaveProperty("updatedAt");
+      expect(response.data.createdAt).toEqual(response.data.updatedAt);
+
       EMPLOYEE_ID = response.data.id;
       log.info("Created Employee with id: " + EMPLOYEE_ID);
     });
@@ -42,7 +47,7 @@ const employeeSuccessCasesIntegrationTestSuite = (httpService) => {
 
       log.info("Getting info for employee with id: " + EMPLOYEE_ID);
       const response = await httpService.sendGetRequest(
-        `/employee/${EMPLOYEE_ID}`
+        `/employee/${EMPLOYEE_ID}`,
       );
       expect(response).toBeDefined();
       expect(response).toBeTruthy();
@@ -59,7 +64,7 @@ const employeeSuccessCasesIntegrationTestSuite = (httpService) => {
       log.info("Updating employee with id: " + EMPLOYEE_ID);
       const response = await httpService.sendPatchRequest(
         `/employee/${EMPLOYEE_ID}`,
-        updateEmployeeData
+        updateEmployeeData,
       );
 
       expect(response).toBeDefined();
@@ -69,7 +74,19 @@ const employeeSuccessCasesIntegrationTestSuite = (httpService) => {
       expect(response.data).toBeDefined();
       expect(response.data).toBeTruthy();
       expect(response.data.id).toEqual(EMPLOYEE_ID);
-      // validate response
+
+      expect(response.data).toHaveProperty("firstName");
+      expect(response.data).toHaveProperty("lastName");
+      expect(response.data).toHaveProperty("salary");
+      expect(response.data).toHaveProperty("isActive");
+      expect(response.data).toHaveProperty("createdAt");
+      expect(response.data).toHaveProperty("updatedAt");
+
+      expect(response.data.firstName).toEqual("UPDATED_FIRST_NAME");
+      expect(response.data.lastName).toEqual("UPDATED_LAST_NAME");
+      expect(response.data.position).toEqual("UPDATED_POSITION");
+
+      expect(response.data.createdAt).not.toEqual(response.data.updatedAt);
     });
 
     it("Should successfully delete an employee by id", async () => {
@@ -78,7 +95,7 @@ const employeeSuccessCasesIntegrationTestSuite = (httpService) => {
 
       log.info("Deleting employee with id: " + EMPLOYEE_ID);
       const response = await httpService.sendDeleteRequest(
-        `/employee/${EMPLOYEE_ID}`
+        `/employee/${EMPLOYEE_ID}`,
       );
       expect(response).toBeDefined();
       expect(response).toBeTruthy();
