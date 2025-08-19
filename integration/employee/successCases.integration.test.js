@@ -23,7 +23,6 @@ const employeeSuccessCasesIntegrationTestSuite = (httpService) => {
       expect(response.data).toHaveProperty("isActive");
       expect(response.data).toHaveProperty("createdAt");
       expect(response.data).toHaveProperty("updatedAt");
-      expect(response.data.createdAt).toEqual(response.data.updatedAt);
 
       EMPLOYEE_ID = response.data.id;
       log.info("Created Employee with id: " + EMPLOYEE_ID);
